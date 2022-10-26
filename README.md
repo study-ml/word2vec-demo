@@ -1,1 +1,1 @@
-# word2vec-js
+# word2vec-demo
