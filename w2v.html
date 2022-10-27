@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Word2Vec Demo</title>
+  <!-- <meta charset="utf-8"> -->
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  <style>
+    b {
+      background-color: #84DCC6;
+    }
+  </style>
+</head>
+<body>
+
+<div id="ie_msg" class="alert alert-danger" hidden>
+  You are using a MS browser (e.g. IE or Edge). Some functions can not work with your browser. Please use other browsers.
+</div>
+
+<div class="container">
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="tabW2v">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-primary">
+            <div class="panel-heading">Parameters</div>
+            <div class="panel-body">
+              <label for="training_data">Training data: </label>
+              <div id="article">I eat seafood in Spain. I drink coffee in Italy. I eat fish in Japan. I eat pasta in Italy. I drink beer in Germany. I drink tea in Spain. I eat seafood in Japan. I drink coffee in Germany. I eat fish in Italy. I eat pasta in Spain. I drink beer in Japan. I drink tea in Japan.<b></b></div>
+              <button class="btn btn-primary" id="w2v_training" onclick="w2v.train();">
+                <span class="glyphicon glyphicon-wrench"></span> Train
+              </button>
+            </div>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">Vectors</div>
+            <div class="panel-body">
+              <div id="positions"></div>
+            </div>
+          </div>
+          <div class="panel panel-primary">
+            <div class="panel-heading">Error over epoch</div>
+            <div class="panel-body">
+              <canvas id="nn_errors"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="panel panel-primary">
+            <div class="panel-heading">Neural Network Visualization</div>
+            <div id="w2v-vis"></div>
+            <div class="panel-footer">
+              <div id="w2v_epoch"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br>
+
+<script src="js/d3.v3.min.js"></script>
+<script src="js/w2v.js"></script>
+</body>
+<script>
+  function detectMsBrowsers() {
+    using_ms_browser = navigator.appName == 'Microsoft Internet Explorer' || (navigator.appName == "Netscape" && navigator.appVersion.indexOf('Edge') > -1) || (navigator.appName == "Netscape" && navigator.appVersion.indexOf('Trident') > -1);
+    if (using_ms_browser == true) {
+      $('#ie_msg').removeAttr('hidden');
+    }
+  }
+
+  $(document).ready(function() {
+    detectMsBrowsers();
+
+    $("#testing").prop('disabled', true);
+    $("#xvalue").prop('disabled', true);
+
+    w2v.initNetwork();
+  });
+</script>
+</html>
+
