@@ -1,4 +1,7 @@
 # word2vec-demo
+
+https://user-images.githubusercontent.com/8428372/198301485-7e5dcb66-6943-4d7e-a204-4ccb5b7cfe67.mp4
+
 * This is a demo of word2vec skip-gram architecture
   * The sliding window size is 3
   * We use a center word (in one hot vector format) as an input to predict context words (in one hot vector format)
